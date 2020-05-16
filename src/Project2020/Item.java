@@ -19,7 +19,7 @@ public abstract class Item {
 	
 	public abstract String getDetails();
 	
-	public String tooString() {
+	public String toString() {
 	 return ( getBasicInfo() + getDetails() );
  }
 // Μέθοδοι getters :
