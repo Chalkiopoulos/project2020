@@ -15,7 +15,7 @@ public class ShoppingCart {
 {
 		boolean flag=false;
 		int i=0;
-try {
+
 		for ( i=0; i<orderList.size(); i++ )  // åëåã÷ù áí õðÜñ÷åé çäç ðáñáããåëéá éäéïõ áíôéêåéìÝíïõ
 				{
 				if(orderList.get(i).getItem().isthesame(ordered.getItem()))
@@ -45,14 +45,9 @@ try {
 			orderList.add(ordered);
 		}
 		
-	}
+	
 		
-		catch(NotEnoughStockException e){
-			//ÈÝëù íá ìå ãõñíáåé Ýíá âÞìá ðßóù.
-		}
-		catch(NegativeOrderException e) { 
-			//ÈÝëù íá ìå ãõñíáåé Ýíá âÞìá ðßóù.
-		}
+		
 }
 	
 void removeItemOrdered(int i)
@@ -140,6 +135,7 @@ double caluclateCourierCost(Buyer buyer) // ÐÁÉÑÍÅÉ ÓÁÍ ÏÑÉÓÌÁ ÔÏÍ BUYER TOY SHO
  public void checkout(Buyer buyer)
  
   {
+	double fullcost=0;
 	showCart(buyer);
 	System.out.println('\n'+"Press 1 to continue on with the transaction");
 	Scanner scan = new Scanner(System.in);
@@ -147,7 +143,13 @@ double caluclateCourierCost(Buyer buyer) // ÐÁÉÑÍÅÉ ÓÁÍ ÏÑÉÓÌÁ ÔÏÍ BUYER TOY SHO
     scan.close();
     if (flag==1)
     {
-    	
+    	int times =orderList.size(); // ÐÑÏÓÏ×ÇÇÇ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   	 for(int i=times; i<0; i--) // åäù äå îåñù áí ðñåðåé íá ðáåé áðï times Þ áðï times-1 ðñåðåé íá åëåã÷èåé
+    	{
+    		fullcost=fullcost+orderList.get(i).getItem().getprice()*orderList.get(i).getquantity();
+    		orderList.remove(i);
+    	}
+   	 buyer.awardBonus(fullcost);
     }
     else 
     {																//ÐÑÏÓÏ×Ç !!!!! ÓÖÇÊÁ ×ÔÉÓÔÇ ÔÏÕ ÌÅÍÏÕ
