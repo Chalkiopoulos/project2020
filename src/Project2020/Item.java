@@ -45,6 +45,10 @@ public abstract class Item {
 		return true;
 		else return false;
 	}
+	public int getid()
+	{
+		return this.id;
+	}
 	
 	
 }
