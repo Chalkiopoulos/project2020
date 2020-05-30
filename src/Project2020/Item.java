@@ -14,7 +14,7 @@ public abstract class Item {
 	}
 	
 	public String getBasicInfo() {
-		return ( "Product's name : "+ name + '\n' + "Product's id : " + id +'\n' +"Product's stock : "+ stock + '\n' + "Product's price : "+ price +'\n' + "Description : "+ description);
+		return ( "Product's name : "+ name + '\n' + "Product's id : " + id +'\n' +"Product's stock : "+ stock + '\n' + "Product's price : "+ price +'\n' + "Description : "+ description+ '\n');
 	}
 	
 	public abstract String getDetails();
