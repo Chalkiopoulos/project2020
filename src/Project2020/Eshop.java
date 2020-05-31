@@ -27,8 +27,8 @@ public void addItem() throws ItemAlreadyExistsException
 	Item item=null;
 	
 	
-	Scanner myscan = new Scanner(System.in);
-	
+	Scanner myscan = new Scanner(System.in); // дем йатакабаимы циати еды лоу кееи оти дем йкеимеи то MYSCAN
+											 // нейахаяа йкеимеи стг цяаллг 128
 	
 	System.out.println("Give the item's name:");
 	itemName=myscan.nextLine();
@@ -43,7 +43,7 @@ public void addItem() throws ItemAlreadyExistsException
 	
 	for (int i=0; i<itemsList.size(); i++)
 	{
-		if (itemID==itemsList.get(i).getid())
+		if (itemID==itemsList.get(i).getid()||itemName==itemsList.get(i).getname())
 		{
 			throw new ItemAlreadyExistsException();
 		}
@@ -51,18 +51,21 @@ public void addItem() throws ItemAlreadyExistsException
 	
 do
 {	
+	flag=false;
 	System.out.println("What type of item do you want to add?"+'\n'+"Press 1 for Pencil"+'\n'+"Press 2 for Pen"+'\n'+"Press 3 for notebook"+'\n'+"Press 4 for paper");
-	choice=myscan.hashCode();
+	choice=myscan.nextInt();
 	switch(choice)
 	{
 	case 1:
 		{
+			
 			double tipsize;
 			String type;
 			
 			System.out.println("Give tipsize in mm ");
 			tipsize=myscan.nextDouble();
 			System.out.println("Give type of pencil(H,B,HB)");
+			type=myscan.nextLine();
 			do 
 				{
 					type=myscan.nextLine();
@@ -118,14 +121,14 @@ do
 			flag=true;
 			System.out.println("You did not enter a valid choice, try again");
 		}	
-		
 	}
+	
 }
 	while (flag==true);
-	
+	myscan.close();
 	itemsList.add(item);
 	
-	}
+}
 
 public Item getitembyid(int id) throws NoSuchIDFoundException
  {
@@ -146,6 +149,9 @@ public Item getitembyid(int id) throws NoSuchIDFoundException
 			break;
 			}
 	   }
+	
+
+	
 	if (flag)
 		{return  itemsList.get(index);}
 	 
@@ -155,6 +161,160 @@ public Item getitembyid(int id) throws NoSuchIDFoundException
 	}
  }
 
+public void removeitem(Item itemTBR)// item To Be Removed
+{
+	itemsList.remove(itemTBR);
+}
 
+public void addBuyer() throws BuyerAlreadyExistsException
+{
+	Scanner myscan = new Scanner(System.in);
+	
+	String buyerName;
+	String buyerEmail;
+	
+	System.out.println("Give the buyer's name:");
+	buyerName=myscan.nextLine();
+	System.out.println("Give the buyer's E-mail");
+	buyerEmail=myscan.nextLine();
+	
+	myscan.close();
+											// ЕКЕЦВЫ АМ УПАЯВЕИ ГДГ О buyer ПОУ ПАЕИ МА ДГЛИОУЯЦГХЕъ
+	for (int i=0; i<buyerList.size(); i++)
+	{
+		if (buyerName==buyerList.get(i).getname()||buyerEmail==buyerList.get(i).getemail())
+		{
+			throw new BuyerAlreadyExistsException();
+		}
+	}
+	
+	Buyer buyerTBA=new Buyer(buyerName,buyerEmail);//Buyer To Be Added
+	
+	buyerList.add(buyerTBA);
+}
+
+void removebuyer(Buyer buyerTBR)//buyer To Be Removed
+{
+	buyerList.remove(buyerTBR);
+}
+
+public void updateItemStock(Item itemTBSU)//item To Be Stock Updated
+{
+	int nstock;
+	
+	Scanner myscan = new Scanner(System.in);
+	System.out.println("Choose the new stock for the item: ");
+	nstock=myscan.nextInt();
+	itemTBSU.setstock(nstock);
+	
+	myscan.close();
+}
+
+public void showCategories()
+{
+	boolean showPens=false;
+	boolean showPencils=false;
+	boolean showNotebooks=false;
+	boolean showPaper=false;
+	
+	for ( int i=0; i<itemsList.size(); i++ )
+	{
+		if (itemsList.get(i).getcategory()=="Pen") showPens=true;
+		if (itemsList.get(i).getcategory()=="Pen") showPencils=true;
+		if (itemsList.get(i).getcategory()=="Pen") showPaper=true;
+		if (itemsList.get(i).getcategory()=="Pen") showNotebooks=true;
+	}
+	
+	System.out.println('\n'+"The currently available categories are: "+ '\n');
+	if (showPens)       System.out.println("Pens");
+	if (showPencils)    System.out.println("Pencils");
+	if (showNotebooks)  System.out.println("Notebook");
+	if (showPaper)      System.out.println("Paper");
+	
+}
+
+public void showProductsInCategory()
+{
+	boolean itemsExist=false;
+	boolean flag= false;
+	String chosencategory;
+	int choice;
+	Scanner myscan= new Scanner(System.in);
+	System.out.println("Choose what category you want to see the products of :"+'\n'+"Press 1 for Pencil"+'\n'+"Press 2 for Pen"+'\n'+"Press 3 for notebook"+'\n'+"Press 4 for paper");
+	choice=myscan.nextInt();
+	
+	
+	do
+	{	
+		flag=false;
+		System.out.println("What type of item do you want to add?"+'\n'+"Press 1 for Pencil"+'\n'+"Press 2 for Pen"+'\n'+"Press 3 for notebook"+'\n'+"Press 4 for paper");
+		choice=myscan.hashCode();
+		switch(choice)
+		{
+		case 1:
+			{
+				chosencategory="Pencil";
+				break;
+			}
+			
+		case 2:
+			{
+				chosencategory="Pen";
+				break;
+			}
+		case 3:
+			{
+				chosencategory="Notebook";
+				break;
+			}
+			
+		case 4:
+			{
+				chosencategory="Paper";
+				break;
+			}
+			
+		default:
+			{
+				chosencategory="NoCategoryHasBeenChosen";
+				flag=true;
+				System.out.println("You did not enter a valid choice, try again");
+			}	
+			
+		}
+		
+	}
+	while (flag==true);
+	myscan.close();
+	
+	for(int i=0; i<itemsList.size(); i++)
+	{
+		if (itemsList.get(i).getcategory()==chosencategory)
+			System.out.println(itemsList.get(i).getname());
+		    itemsExist=true;
+	}
+  
+	if (!itemsExist) {System.out.println("The chosen category has no items");}
+	
+}
+
+public void showProduct(Item itemTBS)//To Be Shown 
+    {
+		System.out.println(itemTBS.getDetails());
+	}
+
+public void checkStatus()
+{
+		if (buyerList.isEmpty())
+			{System.out.println("There are currently no available buyers");}
+		
+		else
+	{
+		for (int i=0; i<buyerList.size(); i++)
+		{
+			System.out.println(i+" Name: "+ buyerList.get(i).getname()+'\t'+"Points: "+buyerList.get(i).getbonus()+'\t'+"Category: "+ buyerList.get(i).getBuyerCategory());
+		}
+	}	
+}
 
 }

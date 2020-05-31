@@ -10,6 +10,14 @@ public abstract class User {
 		
 	}
 		
+	public String getname()
+	{
+		return this.name;
+	}
 	
+	public String getemail()
+	{
+		return this.email;
+	}
 
 }

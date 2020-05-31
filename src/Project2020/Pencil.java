@@ -15,4 +15,9 @@ public class Pencil extends Item{
     public String getDetails() {
     	return getBasicInfo()+ '\n'+ "It has a tip size of : "+ this.tipSize+" mm"+ '\n' +"It is of type: "+this.type;
     }
+    
+    public  String getcategory()
+    {
+    	return "Pencil";
+    }
 }

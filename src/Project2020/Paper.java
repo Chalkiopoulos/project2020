@@ -13,4 +13,9 @@ public class Paper extends Item{
         
         return getBasicInfo()+ '\n'+ "the weight is: "+ this.weight+" grammars"+ '\n' +"there are "+this.pages+" pages" ;
     }
+    
+    public  String getcategory()
+    {
+    	return "Paper";
+    }
 }

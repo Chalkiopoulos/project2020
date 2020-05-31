@@ -25,6 +25,12 @@ class Buyer extends User {
 			{this.buyerCategory="GOLD";}
 		
 	}
+	
+	public int getbonus()
+	{
+		return this.bonus;
+	}
+	
 	public String getBuyerCategory()
 	{
 		return this.buyerCategory;
@@ -56,4 +62,6 @@ class Buyer extends User {
 			//Θέλω να με γυρναει ένα βήμα πίσω.
 		}
 	 }
+	
+	
 }

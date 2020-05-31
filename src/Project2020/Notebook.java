@@ -13,4 +13,9 @@ public class Notebook extends Item{
         
     	return getBasicInfo()+ '\n'+ "this has: "+ this.NumSub+" subcategories"+ '\n';
     }
+    
+    public  String getcategory()
+    {
+    	return "Notebook";
+    }
 }

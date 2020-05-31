@@ -13,6 +13,9 @@ public abstract class Item {
 		this.price=price;
 	}
 	
+	public abstract String getcategory();
+	
+	
 	public String getBasicInfo() {
 		return ( "Product's name : "+ name + '\n' + "Product's id : " + id +'\n' +"Product's stock : "+ stock + '\n' + "Product's price : "+ price +'\n' + "Description : "+ description+ '\n');
 	}
@@ -49,6 +52,13 @@ public abstract class Item {
 	{
 		return this.id;
 	}
+	
+	public String getname()
+	{
+		return this.name;
+	}
+	
+	
 	
 	
 }

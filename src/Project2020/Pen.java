@@ -12,4 +12,9 @@ public class Pen extends Item{
     public String getDetails() {
     	return getBasicInfo()+ '\n'+ "It has a tip size of : "+ this.tipSize+" mm"+ '\n' +"It is of color: "+this.color;
     }
+    
+    public  String getcategory()
+    {
+    	return "Pen";
+    }
 }
